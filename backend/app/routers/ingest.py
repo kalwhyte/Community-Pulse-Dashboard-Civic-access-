@@ -6,6 +6,7 @@ from ..schemas import DataPointCreate, DataPoint
 
 router = APIRouter()
 
+# comment: Ingest data into the database
 @router.post("/ingest", response_model=DataPoint)
 def ingest_data(data: DataPointCreate, db: Session = Depends(get_db)):
     db_item = DataPoint(**data.dict())
@@ -14,6 +15,7 @@ def ingest_data(data: DataPointCreate, db: Session = Depends(get_db)):
     db.refresh(db_item)
     return db_item
 
+# comment: Get all data points
 @router.get("/data", response_model=list[DataPoint])
 def get_data(db: Session = Depends(get_db)):
     return db.query(DataPoint).all()

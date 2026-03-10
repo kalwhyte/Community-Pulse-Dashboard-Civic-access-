@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, Float
 from .database import Base
 
+# comment: Define the DataPoint model
 class DataPoint(Base):
     __tablename__ = "data_points"
 
@@ -11,6 +12,7 @@ class DataPoint(Base):
     latitude = Column(Float)
     longitude = Column(Float)
 
+# comment: Define the Mismatch model
 class Mismatch(Base):
     __tablename__ = "mismatches"
 

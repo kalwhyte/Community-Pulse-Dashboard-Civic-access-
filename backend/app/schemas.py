@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 
+# commeent: Define Pydantic models for data validation and serialization
 class DataPointBase(BaseModel):
     source: str
     content: str
@@ -15,8 +16,9 @@ class DataPoint(DataPointBase):
     timestamp: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
+# comment: Define Pydantic models for mismatch records
 class MismatchBase(BaseModel):
     description: str
     data_point_id: int
@@ -28,4 +30,4 @@ class Mismatch(MismatchBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
