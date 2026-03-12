@@ -1,33 +1,35 @@
-from pydantic import BaseModel
-from datetime import datetime
+# Import BaseModel from Pydantic for request and response validation.
+from pydantic import BaseModel, HttpUrl
 
-# commeent: Define Pydantic models for data validation and serialization
-class DataPointBase(BaseModel):
-    source: str
-    content: str
-    latitude: float
-    longitude: float
+# Import List to type arrays of values.
+from typing import List
 
-class DataPointCreate(DataPointBase):
-    pass
+# Define the schema for a crawl request.
+class CrawlRequest(BaseModel):
+    # Accept a list of URLs to crawl.
+    urls: List[HttpUrl]
 
-class DataPoint(DataPointBase):
-    id: int
-    timestamp: datetime
+# Define the response schema for a crawl trigger.
+class CrawlResponse(BaseModel):
+    # Return the Bright Data snapshot ID.
+    snapshot_id: str
 
-    class Config:
-        from_attributes = True
+# Define the schema for dashboard insight data.
+class InsightResponse(BaseModel):
+    # The name of the location being analyzed.
+    location: str
 
-# comment: Define Pydantic models for mismatch records
-class MismatchBase(BaseModel):
-    description: str
-    data_point_id: int
+    # The issue category.
+    category: str
 
-class MismatchCreate(MismatchBase):
-    pass
+    # The social sentiment score.
+    social_score: float
 
-class Mismatch(MismatchBase):
-    id: int
+    # The official activity score.
+    official_score: float
 
-    class Config:
-        from_attributes = True
+    # The mismatch score.
+    mismatch_score: float
+
+    # The AI-generated explanation.
+    explanation: str

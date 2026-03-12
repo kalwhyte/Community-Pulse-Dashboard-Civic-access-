@@ -1,21 +1,23 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
-from ..database import get_db
-from ..models import DataPoint
-from ..schemas import DataPointCreate, DataPoint
+# Import APIRouter so we can define grouped API routes.
+from fastapi import APIRouter
 
-router = APIRouter()
+# Import the request schema.
+from app.schemas import CrawlRequest
 
-# comment: Ingest data into the database
-@router.post("/ingest", response_model=DataPoint)
-def ingest_data(data: DataPointCreate, db: Session = Depends(get_db)):
-    db_item = DataPoint(**data.dict())
-    db.add(db_item)
-    db.commit()
-    db.refresh(db_item)
-    return db_item
+# Import the response schema.
+from app.schemas import CrawlResponse
 
-# comment: Get all data points
-@router.get("/data", response_model=list[DataPoint])
-def get_data(db: Session = Depends(get_db)):
-    return db.query(DataPoint).all()
+# Import the Bright Data trigger function.
+from app.services.brightdata_client import trigger_crawl
+
+# Create a router for ingestion endpoints.
+router = APIRouter(prefix="/ingest", tags=["Ingestion"])
+
+# Define an endpoint for social crawl triggering.
+@router.post("/social", response_model=CrawlResponse)
+def ingest_social_data(payload: CrawlRequest):
+    # Trigger a Bright Data crawl using the list of URLs.
+    result = trigger_crawl(payload.urls)
+
+    # Return the snapshot ID in a clean response.
+    return CrawlResponse(snapshot_id=result["snapshot_id"])
