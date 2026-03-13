@@ -12,6 +12,7 @@ def get_summary():
     return {
         "city": "Montgomery",
         "top_issue": "Road Infrastructure",
+        "total_data_points": 1000,
         "average_sentiment": -0.42,
         "mismatch_hotspots": 4,
     }

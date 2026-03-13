@@ -28,7 +28,7 @@ app = FastAPI(
 # ------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["http://localhost:3000", "https://127.0.0.1:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -46,7 +46,11 @@ async def request_logger(request: Request, call_next):
         f"REQ  -> {request.method} {request.url.path} | IP:{request.client.host}"
     )
 
-    response = await call_next(request)
+    try:
+        response = await call_next(request)
+    except Exception as e:
+        logger.error(f"ERROR -> {str(e)}")
+        raise e
 
     process_time = round((time.time() - start) * 1000, 2)
 
