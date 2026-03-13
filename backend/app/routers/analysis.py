@@ -1,12 +1,9 @@
 from fastapi import APIRouter
 
-router = APIRouter()
+# Create a router for analysis endpoints.
+router = APIRouter(prefix="/analysis", tags=["Analysis"])
 
-@router.post("/analyze")
-def analyze_data():
-    # Placeholder for analysis using Gemini
-    return {"analysis": "Data analyzed"}
 
-@router.get("/insights")
-def get_insights():
-    return {"insights": []}
+@router.get("/health")
+def analysis_health():
+    return {"status": "ok"}
