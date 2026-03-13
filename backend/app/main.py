@@ -13,9 +13,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(ingest.router, prefix="/api/v1", tags=["ingest"])
-app.include_router(dashboard.router, prefix="/api/v1", tags=["dashboard"])
-app.include_router(analysis.router, prefix="/api/v1", tags=["analysis"])
+app.include_router(ingest.router, prefix="/api/v1")
+app.include_router(dashboard.router, prefix="/api/v1")
+app.include_router(analysis.router, prefix="/api/v1")
+
 
 @app.get("/")
 def root():

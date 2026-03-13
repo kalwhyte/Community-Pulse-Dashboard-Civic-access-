@@ -1,5 +1,5 @@
 # Import APIRouter so we can define grouped API routes.
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 # Import the request schema.
 from app.schemas import CrawlRequest
@@ -19,5 +19,13 @@ def ingest_social_data(payload: CrawlRequest):
     # Trigger a Bright Data crawl using the list of URLs.
     result = trigger_crawl(payload.urls)
 
+    snapshot_id = (
+        result.get("snapshot_id")
+        or result.get("snapshotId")
+        or result.get("id")
+    )
+    if not snapshot_id:
+        raise HTTPException(status_code=502, detail=f"Bright Data response missing snapshot_id/id: {result}")
+
     # Return the snapshot ID in a clean response.
-    return CrawlResponse(snapshot_id=result["snapshot_id"])
+    return CrawlResponse(snapshot_id=str(snapshot_id))

@@ -34,6 +34,6 @@ def analyze_post_with_gemini(content):
         ]
     }
 
-    response = requests.post(endpoint, json=payload, timeout=60)
+    response = requests.post(endpoint, json=payload, timeout=180)
     response.raise_for_status()
     return response.json()
