@@ -2,6 +2,7 @@
 
 type Insight = {
 <<<<<<< HEAD
+<<<<<<< HEAD
   location: string
   category: string
   mismatch_score: number
@@ -10,6 +11,8 @@ type Insight = {
 
 export default function InsightPanel({ insights }: { insights: Insight[] }) {
 =======
+=======
+>>>>>>> ed222926a3315889b3f9d74acf5ffc2f73767928
   location: string;
   category: string;
   social_score: number;
@@ -23,7 +26,10 @@ type Props = {
 };
 
 export default function InsightPanel({ insight }: Props) {
+<<<<<<< HEAD
 >>>>>>> a7dd7179371cf60abafa5351a198e4f19a3b22ff
+=======
+>>>>>>> ed222926a3315889b3f9d74acf5ffc2f73767928
   return (
     <div className="bg-white p-4 rounded shadow">
       <h3 className="text-lg font-semibold mb-4">AI Insights</h3>

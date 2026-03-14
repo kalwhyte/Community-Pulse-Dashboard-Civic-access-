@@ -3,6 +3,7 @@
 import { useState } from 'react'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 type CrawlRunnerProps = {
   apiBase: string
 }
@@ -42,6 +43,8 @@ export default function CrawlRunner({ apiBase }: CrawlRunnerProps) {
       setIsLoading(false)
     }
 =======
+=======
+>>>>>>> ed222926a3315889b3f9d74acf5ffc2f73767928
 type Props = {
   apiBase: string
 }
@@ -70,7 +73,10 @@ export default function CrawlRunner({ apiBase }: Props) {
     alert(`Snapshot started: ${data.snapshot_id}`)
   } catch (err) {
     alert("Failed to start crawl")
+<<<<<<< HEAD
 >>>>>>> a7dd7179371cf60abafa5351a198e4f19a3b22ff
+=======
+>>>>>>> ed222926a3315889b3f9d74acf5ffc2f73767928
   }
 }
 

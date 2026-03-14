@@ -20,6 +20,7 @@ const fallbackData: ChartPoint[] = [
 ]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default function MismatchChart({ insights }: { insights: Insight[] }) {
   const chartData: ChartPoint[] = insights.length
     ? insights.map((item) => ({
@@ -29,6 +30,8 @@ export default function MismatchChart({ insights }: { insights: Insight[] }) {
     : fallbackData
 
 =======
+=======
+>>>>>>> ed222926a3315889b3f9d74acf5ffc2f73767928
 type Insight = {
   location: string;
   category: string;
@@ -43,7 +46,10 @@ type Props = {
 };
 
 export default function MismatchChart({ insight }: Props) {
+<<<<<<< HEAD
 >>>>>>> a7dd7179371cf60abafa5351a198e4f19a3b22ff
+=======
+>>>>>>> ed222926a3315889b3f9d74acf5ffc2f73767928
   return (
     <div className="bg-white p-4 rounded shadow">
       <h3 className="text-lg font-semibold mb-4">Mismatch Snapshot</h3>

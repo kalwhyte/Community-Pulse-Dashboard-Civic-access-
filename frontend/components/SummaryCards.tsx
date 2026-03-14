@@ -1,6 +1,7 @@
 'use client'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 type SummaryResponse = {
   city: string
   top_issue: string
@@ -10,6 +11,8 @@ type SummaryResponse = {
 
 export default function SummaryCards({ data }: { data: SummaryResponse | null }) {
 =======
+=======
+>>>>>>> ed222926a3315889b3f9d74acf5ffc2f73767928
 interface SummaryCardsProps {
   data: {
     total_data_points?: number;
@@ -22,7 +25,10 @@ interface SummaryCardsProps {
 }
 
 export default function SummaryCards({ data, insightsCount }: SummaryCardsProps) {
+<<<<<<< HEAD
 >>>>>>> a7dd7179371cf60abafa5351a198e4f19a3b22ff
+=======
+>>>>>>> ed222926a3315889b3f9d74acf5ffc2f73767928
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
       <div className="bg-white p-4 rounded shadow">
@@ -48,7 +54,10 @@ export default function SummaryCards({ data, insightsCount }: SummaryCardsProps)
       <div className="bg-white p-4 rounded shadow">
         <h3 className="text-lg font-semibold">Insights</h3>
         <p className="text-2xl">{data?.average_sentiment || 0}</p>
+<<<<<<< HEAD
 >>>>>>> a7dd7179371cf60abafa5351a198e4f19a3b22ff
+=======
+>>>>>>> ed222926a3315889b3f9d74acf5ffc2f73767928
       </div>
     </div>
   )
