@@ -2,13 +2,36 @@
 
 import { useState } from 'react'
 
-export default function CrawlRunner() {
+type Props = {
+  apiBase: string
+}
+
+export default function CrawlRunner({ apiBase }: Props) {
   const [url, setUrl] = useState('')
 
-  const handleCrawl = () => {
-    // Placeholder for calling backend
-    alert(`Crawling ${url}`)
+  const handleCrawl = async () => {
+  if (!url) return
+
+  try {
+    const res = await fetch(`${apiBase}/ingest/social`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        urls: [url]
+      })
+    })
+
+    if (!res.ok) throw new Error("Crawl failed")
+
+    const data = await res.json()
+
+    alert(`Snapshot started: ${data.snapshot_id}`)
+  } catch (err) {
+    alert("Failed to start crawl")
   }
+}
 
   return (
     <div className="bg-white p-4 rounded shadow mt-8">
